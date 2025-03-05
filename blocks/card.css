@@ -13,10 +13,14 @@
 .card__title {
   margin: 0;
   text-align: left;
+  max-width: 337px;
   padding: 12px 0 4px;
   font-weight: 500;
   font-size: 20px;
-  line-height: 1.2;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .card__content {

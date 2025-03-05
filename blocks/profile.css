@@ -18,6 +18,11 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .profile__description {
@@ -25,15 +30,29 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .profile__edit-button {
   margin-top: auto;
   background-color: #fcf5e5;
+  border: none;
+  text-align: left;
 }
 
 .profile__add-button {
-  margin-left: auto;
+  margin: 138px 0 0 auto;
+  background-color: #212121;
+  border-radius: 8px;
+  width: 149px;
+  height: 52px;
+  color: #fff;
+  font-size: 16px;
+  line-height: 1;
 }
 
 @media screen and (max-width: 627px) {
