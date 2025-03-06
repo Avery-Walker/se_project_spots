@@ -4,10 +4,13 @@
 }
 
 .footer__copyright {
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: 400;
-  font-style: 16px;
-  line-height: 16px;
+  font-size: 16px;
+  line-height: 1;
+  color: #212121;
+  opacity: 70%;
 }
