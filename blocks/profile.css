@@ -24,7 +24,6 @@
   font-size: 32px;
   line-height: 1;
   max-width: 420px;
-  max-height: 32px;
   text-overflow: ellipsis;
   overflow: hidden;
   display: -webkit-box;
@@ -38,8 +37,7 @@
   opacity: 0.7;
   font-weight: 500;
   font-size: 16px;
-  max-width: 97px;
-  max-height: 16px;
+  max-width: 420px;
   line-height: 1;
   text-overflow: ellipsis;
   overflow: hidden;
@@ -130,6 +128,8 @@
 
   .profile__description {
     margin: 0 0 32px;
+    justify-content: center;
+    align-items: center;
   }
 
   .profile__edit-button {
@@ -139,7 +139,6 @@
 
   .profile__add-button {
     width: 288px;
-    height: 52px;
   }
 
   .profile__column {
