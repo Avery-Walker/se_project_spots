@@ -44,6 +44,14 @@ const editModalDescriptionInput = editProfileModal.querySelector(
 const cardTemplate = document.querySelector("#card-template");
 const cardList = document.querySelector(".cards__list");
 
+function openModal(modal) {
+  modal.classList.add(modal_opened);
+}
+
+function clsoeModal(modal) {
+  modal.classList.remove(modal_opened);
+}
+
 function getCardElement(data) {
   const cardElement = cardTemplate.content
     .querySelector(".card")
@@ -62,11 +70,11 @@ function getCardElement(data) {
 function openModal() {
   editModalNameInput.value = profileName.textContent;
   editModalDescriptionInput.value = profileDescription.textContent;
-  editProfileModal.classList.add("modal_opened");
+  openModal(editProfileModal);
 }
 
 function closeModal() {
-  editProfileModal.classList.remove("modal_opened");
+  closeModal(editProfileModal);
 }
 
 function handleEditFormSubmit(event) {
