@@ -50,7 +50,7 @@
 
 .modal__close_type_preview {
   top: 0;
-  right: 52.5px;
+  right: -52.5px;
 }
 
 .modal__close:hover {
@@ -129,6 +129,9 @@
 
 .modal__caption {
   color: #fff;
+  width: 214px;
+  border-radius: 8px;
+  background-color: rgba(33, 33, 33, 1);
 }
 
 @media screen and (max-width: 627px) {
