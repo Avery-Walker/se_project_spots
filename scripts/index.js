@@ -97,7 +97,15 @@ function getCardElement(data) {
   return cardElement;
 }
 
-profileEditButton.addEventListener("click", () => openModal(editProfileModal));
+profileEditButton.addEventListener("click", () => {
+  editModalNameInput.value = profileNameEl.textContent;
+  editModalDescriptionInput.value = profileDescriptionEl.textContent;
+  openModal(editProfileModal);
+});
+
+addCardBtn.addEventListener("click", () => {
+  openModal(addCardModal);
+});
 
 addCardCloseBtn.addEventListener("click", () => closeModal(addCardModal));
 editProfileCloseBtn.addEventListener("click", function () {
