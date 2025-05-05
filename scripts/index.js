@@ -138,3 +138,7 @@ initialCards.forEach(function (item) {
   const cardElement = getCardElement(item);
   cardsList.append(cardElement);
 });
+
+previewModalCloseBtn.addEventListener("click", () => {
+  closeModal(previewModal);
+});
