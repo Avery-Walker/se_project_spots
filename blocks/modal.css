@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.3s ease-in, opacity 0.3s ease-in;
 }
 
 .modal_type_preview {
@@ -20,6 +22,7 @@
 
 .modal_is-opened {
   visibility: visible;
+  opacity: 1;
 }
 
 .modal__container {
@@ -129,8 +132,12 @@
 
 .modal__caption {
   color: #fff;
-  width: 214px;
+  width: fit-content;
   border-radius: 8px;
+  padding: 4px 8px;
+  font-weight: 500;
+  line-height: 1.2;
+  font-size: 20px;
   background-color: rgba(33, 33, 33, 1);
 }
 

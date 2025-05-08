@@ -116,7 +116,7 @@ editFormEl.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileNameEl.textContent = editModalNameInput.value;
   profileDescriptionEl.textContent = editModalDescriptionInput.value;
-  editProfileModal.classList.remove("modal_is-opened");
+  closeModal(editProfileModal);
 });
 
 addCardFormEl.addEventListener("submit", function (evt) {
