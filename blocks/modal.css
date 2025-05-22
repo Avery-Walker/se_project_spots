@@ -85,6 +85,7 @@
   max-width: 630px;
   padding: 16px 12px;
   height: 32px;
+  margin-bottom: 0;
   border-width: 1px;
   border-radius: 8px;
   border-color: rgba(33, 33, 33, 0.4);
@@ -96,6 +97,13 @@
 
 .modal__input:hover {
   border-color: rgba(33, 33, 33, 1);
+}
+
+.modal__error {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255, 0, 0, 0.7);
+  font-size: 16px;
 }
 
 .modal__button {
