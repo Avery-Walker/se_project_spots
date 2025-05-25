@@ -102,6 +102,8 @@ function getCardElement(data) {
 profileEditButton.addEventListener("click", () => {
   editModalNameInput.value = profileNameEl.textContent;
   editModalDescriptionInput.value = profileDescriptionEl.textContent;
+  hideInputError(editFormEl, editModalNameInput, validationConfig);
+  hideInputError(editFormEl, editModalDescriptionInput, validationConfig);
   openModal(editProfileModal);
 });
 
@@ -148,9 +150,26 @@ previewModalCloseBtn.addEventListener("click", () => {
 function handleEscClose(evt) {
   if (evt.key === "Escape") {
     const openedModal = document.querySelector(".modal_is-opened");
-    document.addEventListener("keydown", handleEscClose);
     if (openedModal) {
       closeModal(openedModal);
     }
   }
 }
+
+editProfileModal.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(editProfileModal);
+  }
+});
+
+addCardModal.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(addCardModal);
+  }
+});
+
+previewModal.addEventListener("click", function (evt) {
+  if (evt.target.classList.contains("modal")) {
+    closeModal(previewModal);
+  }
+});

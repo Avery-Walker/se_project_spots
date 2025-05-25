@@ -76,9 +76,7 @@ function resetForm(formElement, config) {
   const inputs = formElement.querySelectorAll(config.inputSelector);
   inputs.forEach((input) => {
     input.value = "";
-    input.classList.remove(config.inputErrorClass);
-    const errorElement = formElement.querySelector(`#${input.id}-error`);
-    errorElement.textContent = "";
+    hideInputError(formElement, input, config);
   });
 }
 
