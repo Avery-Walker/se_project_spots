@@ -125,6 +125,11 @@
   cursor: pointer;
 }
 
+.modal__button_disabled {
+  pointer-events: none;
+  opacity: 50%;
+}
+
 .modal__image {
   max-width: 80vw;
   max-height: 80vh;

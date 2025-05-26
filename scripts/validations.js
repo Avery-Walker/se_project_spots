@@ -72,12 +72,4 @@ const setEventListeners = (formElement, config) => {
   });
 };
 
-function resetForm(formElement, config) {
-  const inputs = formElement.querySelectorAll(config.inputSelector);
-  inputs.forEach((input) => {
-    input.value = "";
-    hideInputError(formElement, input, config);
-  });
-}
-
 enableValidation(validationConfig);
