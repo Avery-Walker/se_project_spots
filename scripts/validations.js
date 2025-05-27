@@ -44,6 +44,11 @@ const hideInputError = (formElement, inputElement, config) => {
   errorElement.textContent = "";
 };
 
+function disableButton(buttonElement, config) {
+  buttonElement.disabled = true;
+  buttonElement.classList.add(config.inactiveButtonClass);
+}
+
 const checkInputValidity = (formElement, inputElement, config) => {
   if (!inputElement.validity.valid) {
     showInputError(

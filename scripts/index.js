@@ -120,6 +120,8 @@ editFormEl.addEventListener("submit", function (evt) {
   evt.preventDefault();
   profileNameEl.textContent = editModalNameInput.value;
   profileDescriptionEl.textContent = editModalDescriptionInput.value;
+  const buttonElement = evt.target.querySelector(".modal__button");
+  disableButton(buttonElement, validationConfig);
   closeModal(editProfileModal);
 });
 
@@ -133,7 +135,8 @@ addCardFormEl.addEventListener("submit", function (evt) {
 
   const cardElement = getCardElement(inputValues);
   cardsList.prepend(cardElement);
-
+  const buttonElement = evt.target.querySelector(".modal__button");
+  disableButton(buttonElement, validationConfig);
   closeModal(addCardModal);
   addCardFormEl.reset();
 });
