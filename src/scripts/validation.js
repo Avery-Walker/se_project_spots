@@ -1,4 +1,4 @@
-const validationConfig = {
+export const validationConfig = {
   formSelector: ".modal__form",
   inputSelector: ".modal__input",
   submitButtonSelector: ".modal__button",
@@ -7,7 +7,7 @@ const validationConfig = {
   errorClass: "modal__error_visible",
 };
 
-function enableValidation(config) {
+export const enableValidation = (config) => {
   const forms = document.querySelectorAll(config.formSelector);
   forms.forEach((formElement) => {
     formElement.addEventListener("submit", (evt) => {
@@ -15,7 +15,7 @@ function enableValidation(config) {
     });
     setEventListeners(formElement, config);
   });
-}
+};
 
 function toggleButtonState(inputList, buttonElement, config) {
   const hasInvalidInput = !inputList.every((inputElement) => {
@@ -30,21 +30,21 @@ function toggleButtonState(inputList, buttonElement, config) {
   }
 }
 
-const showInputError = (formElement, inputElement, errorMsg, config) => {
+export const showInputError = (formElement, inputElement, errorMsg, config) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.add(config.inputErrorClass);
   errorElement.classList.add(config.errorClass);
   errorElement.textContent = errorMsg;
 };
 
-const hideInputError = (formElement, inputElement, config) => {
+export const hideInputError = (formElement, inputElement, config) => {
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
   inputElement.classList.remove(config.inputErrorClass);
   errorElement.classList.remove(config.errorClass);
   errorElement.textContent = "";
 };
 
-function disableButton(buttonElement, config) {
+export function disableButton(buttonElement, config) {
   buttonElement.disabled = true;
   buttonElement.classList.add(config.inactiveButtonClass);
 }
@@ -76,5 +76,3 @@ const setEventListeners = (formElement, config) => {
     });
   });
 };
-
-enableValidation(validationConfig);
