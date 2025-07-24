@@ -56,10 +56,12 @@
 .card__like-button:hover {
   cursor: pointer;
   opacity: 100%;
+  border: none;
 }
 
 .card__like-button_active:hover {
-  background: rgba(255, 101, 101, 1);
+  cursor: pointer;
+  opacity: 60%;
 }
 
 .card__delete-button {
