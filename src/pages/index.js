@@ -60,7 +60,6 @@ const previewModalCloseBtn = previewModal.querySelector(".modal__close");
 const previewImageEl = previewModal.querySelector(".modal__image");
 const previewNameEl = previewModal.querySelector(".modal__caption");
 
-let selectedCard, selectedCardId;
 let cardToDelete = null;
 let cardToDeleteId = null;
 
@@ -74,13 +73,8 @@ api
     profileAvatarEl.src = userData.avatar;
     profileAvatarEl.alt = `${userData.name}'s avatar`;
 
-    console.log("cardsList exists:", cardsList);
-    console.log("cardsList is in DOM?", document.body.contains(cardsList));
-
     cards.forEach((card) => {
-      console.log("Creating card for:", card);
       const cardElement = getCardElement(card);
-      console.log("cardElement:", cardElement);
       cardsList.append(cardElement);
     });
   })
@@ -94,22 +88,6 @@ function openModal(modal) {
 function closeModal(modal) {
   modal.classList.remove("modal_is-opened");
   document.removeEventListener("keydown", handleEscClose);
-}
-
-function handleLike(evt, id) {
-  const likeButtonEl = evt.target;
-  const isLiked = likeButtonEl.classList.contains("card__like-button_active");
-
-  api
-    .changeLikeStatus(id, !isLiked)
-    .then((updatedCard) => {
-      const isLikedByUser = updatedCard.likes.some(
-        (user) => user._id === currentUserId
-      );
-
-      likeButtonEl.classList.toggle("card__like-button_active", isLikedByUser);
-    })
-    .catch(console.error);
 }
 
 function handleDeleteCardClick(cardElement, cardId) {
@@ -170,32 +148,26 @@ function getCardElement(data) {
   cardImgEl.src = data.link;
   cardImgEl.alt = data.name;
 
-  const likes = Array.isArray(data.likes) ? data.likes : [];
-
   const ownerId = typeof data.owner === "object" ? data.owner._id : data.owner;
-  const isLikedByUser = likes.some((user) => user._id === currentUserId);
+  const isLikedByUser = data.isLiked;
 
   if (isLikedByUser) {
     likeButtonEl.classList.add("card__like-button_active");
   }
 
   likeButtonEl.addEventListener("click", () => {
-    const isCurrentlyLiked = likeButtonEl.classList.contains(
-      "card__like-button_active"
-    );
-
     api
-      .changeLikeStatus(data._id, !isCurrentlyLiked)
+      .changeLikeStatus(data._id, !data.isLiked)
       .then((updatedCard) => {
-        const isLikedByUser = card.likes?.some(
-          (user) => user._id === currentUserId
-        );
+        data.isLiked = updatedCard.isLiked; // Update local state
         likeButtonEl.classList.toggle(
           "card__like-button_active",
-          isLikedByUser
+          updatedCard.isLiked
         );
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Failed to like card", error);
+      });
   });
 
   if (ownerId !== currentUserId) {
@@ -251,7 +223,9 @@ editFormEl.addEventListener("submit", function (evt) {
       disableButton(buttonElement, validationConfig);
       closeModal(editProfileModal);
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to edit user:", error)
+    })
     .finally(() => {
       setButtonText(button, false);
     });
@@ -277,8 +251,6 @@ addCardFormEl.addEventListener("submit", function (evt) {
   api
     .addCard(inputValues)
     .then((cardData) => {
-      console.log("Card added from API:", cardData);
-
       const cardElement = getCardElement(cardData);
       cardsList.prepend(cardElement);
       const buttonElement = evt.target.querySelector(".modal__button");
@@ -286,7 +258,9 @@ addCardFormEl.addEventListener("submit", function (evt) {
       closeModal(addCardModal);
       addCardFormEl.reset();
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to add card:", error);
+    })
     .finally(() => {
       setButtonText(button, false);
     });
@@ -307,7 +281,9 @@ function handleAvatarSubmit(evt) {
       closeModal(avatarModal);
       avatarForm.reset();
     })
-    .catch(console.error)
+    .catch((error) => {
+      console.error("Failed to change avatar:", error);
+    })
     .finally(() => {
       setButtonText(button, false);
     });
